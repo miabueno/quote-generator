@@ -1,18 +1,18 @@
 
 let apiQuotes = [];
 
-const loader = document.getElementById('loader');
+const loadingSpinner = document.getElementById('loader');
 const quoteContainer = document.getElementById('quote-container');
 
 // Show Loading
-const showLoading = () => {
-    loader.hidden = false;
+const showLoadingSpinner = () => {
+    loadingSpinner.hidden = false;
     quoteContainer.hidden = true;
 };
 
 // Hide Loading
-const hideLoading = () => {
-    loader.hidden = true;
+const hideLoadingSpinner = () => {
+    loadingSpinner.hidden = true;
     quoteContainer.hidden = false;
 };
 
@@ -24,27 +24,27 @@ const randomQuote = (quotesArr) => {
 
 // Show new quote in quote container
 const displayNewQuote = (quotesArr) => {
-    hideLoading();
+    hideLoadingSpinner();
     const newQuote = randomQuote(quotesArr);
     const quoteText = newQuote.text;
     const quoteAuthor = newQuote.author ? newQuote.author : 'Unknown';
 
     // DOM elements
-    const quoteTextEl = document.getElementById('quote');
-    const quoteAuthorEl = document.getElementById('author');
+    const quoteTextElement = document.getElementById('quote');
+    const quoteAuthorElement = document.getElementById('author');
 
     // quote length to determine styling
-    (quoteText.length > 120) ? quoteTextEl.classList.add('long-quote') 
-        : quoteTextEl.classList.remove('long-quote');
+    (quoteText.length > 120) ? quoteTextElement.classList.add('long-quote') 
+        : quoteTextElement.classList.remove('long-quote');
 
     // manipulate DOM elements
-    quoteTextEl.textContent = quoteText;
-    quoteAuthorEl.textContent = quoteAuthor;
+    quoteTextElement.textContent = quoteText;
+    quoteAuthorElement.textContent = quoteAuthor;
 };
 
 // Get Quotes From API
 const getQuotes = async () => {
-    showLoading();
+    showLoadingSpinner();
     const apiURL = 'https://type.fit/api/quotes';
     try {
         const response = await fetch(apiURL);
@@ -71,7 +71,7 @@ twitterBtn.addEventListener('click', () => {
 
 const newQuoteBtn = document.getElementById('new-quote');
 newQuoteBtn.addEventListener('click', () => {
-    showLoading();
+    showLoadingSpinner();
     displayNewQuote(apiQuotes);
 });
 
