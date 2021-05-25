@@ -2,11 +2,11 @@
 
 Quote Generator mini project built through Udemy course found [here](https://www.udemy.com/course/javascript-web-projects-to-build-your-portfolio-resume/)
 
-#### What does it do
+### What does it do?
 
 This Quote Generator loads a new random quote every time the New Quote button is selected.
 
-#### What does this project entail?
+### What does this project entail?
 
 * Fetches an array of quote objects containing the quote text and its respective author
 * On initial load:
