@@ -2,7 +2,7 @@
 let apiQuotes = [];
 
 // Show new quote in quote container
-function displayNewQuote(quotesArr) {
+const displayNewQuote = (quotesArr) => {
     const newQuote = randomQuote(quotesArr);
     const quoteText = newQuote.text;
     const quoteAuthor = newQuote.author ? newQuote.author : 'Unknown';
@@ -18,16 +18,16 @@ function displayNewQuote(quotesArr) {
     // manipulate DOM elements
     quoteTextEl.textContent = quoteText;
     quoteAuthorEl.textContent = quoteAuthor;
-}
+};
 
 // Select a random quote from given array
-function randomQuote(quotesArr) {
+const randomQuote = (quotesArr) => {
     const randomIdx = Math.floor(Math.random() * quotesArr.length);
     return quotesArr[randomIdx];
-}
+};
 
 // Get Quotes From API
-async function getQuotes() {
+const getQuotes = async () => {
     const apiURL = 'https://type.fit/api/quotes';
     try {
         const response = await fetch(apiURL);
