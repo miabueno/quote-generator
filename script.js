@@ -1,6 +1,21 @@
 
 let apiQuotes = [];
 
+const loader = document.getElementById('loader');
+const quoteContainer = document.getElementById('quote-container');
+
+// Show Loading
+const showLoading = () => {
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+};
+
+// Hide Loading
+const hideLoading = () => {
+    loader.hidden = true;
+    quoteContainer.hidden = false;
+};
+
 // Select a random quote from given array
 const randomQuote = (quotesArr) => {
     const randomIdx = Math.floor(Math.random() * quotesArr.length);
@@ -9,6 +24,7 @@ const randomQuote = (quotesArr) => {
 
 // Show new quote in quote container
 const displayNewQuote = (quotesArr) => {
+    hideLoading();
     const newQuote = randomQuote(quotesArr);
     const quoteText = newQuote.text;
     const quoteAuthor = newQuote.author ? newQuote.author : 'Unknown';
@@ -28,13 +44,12 @@ const displayNewQuote = (quotesArr) => {
 
 // Get Quotes From API
 const getQuotes = async () => {
+    showLoading();
     const apiURL = 'https://type.fit/api/quotes';
     try {
         const response = await fetch(apiURL);
         apiQuotes = await response.json();
-        
         displayNewQuote(apiQuotes);
-
     } catch(error) {
         alert(error);
     }
@@ -56,6 +71,7 @@ twitterBtn.addEventListener('click', () => {
 
 const newQuoteBtn = document.getElementById('new-quote');
 newQuoteBtn.addEventListener('click', () => {
+    showLoading();
     displayNewQuote(apiQuotes);
 });
 
